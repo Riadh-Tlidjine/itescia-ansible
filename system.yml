@@ -1,0 +1,21 @@
+---
+- hosts: all
+
+
+  tasks:
+  - name: Add the user "riadhadmin"
+    become: true
+    user:
+      name: riadhadmin
+
+  - name: "Deploy package apache2"
+    become: true
+    package:
+      name: apache2
+      state: present
+
+  - name: "Deploy package htop"
+    become: true
+    package:
+      name: htop
+      state: present
