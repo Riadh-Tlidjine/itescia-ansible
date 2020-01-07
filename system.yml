@@ -1,21 +1,21 @@
 ---
 - hosts: all
-
+  become: true
 
   tasks:
-  - name: Add the user "riadhadmin"
-    become: true
+  - name: "Add the user"
     user:
-      name: riadhadmin
+      name: "{{ item.name }}"
+    with_items:
+       - { name: itescia }
+       - { name: toto }
+       - { name: riadhadmin}  
 
-  - name: "Deploy package apache2"
-    become: true
+  - name: "Deploy package "
     package:
-      name: apache2
+      name: "{{ item.package }}"
       state: present
-
-  - name: "Deploy package htop"
-    become: true
-    package:
-      name: htop
-      state: present
+    with_items: 
+       - { package: vim }
+       - { package: htop }
+         
