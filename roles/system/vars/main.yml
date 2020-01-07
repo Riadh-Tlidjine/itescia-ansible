@@ -1,0 +1,7 @@
+---
+# vars file for roles/system---
+ 
+__users: [tata, toto, titi]
+__package: [htop, vim ]
+  
+         

@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  vars: 
+        users: [tata, toto, titi]
+        package: [htop, vim ]
+  tasks:
+  - name: "Add the user"
+    user: 
+      name: "{{ item }}"
+      shell: /bin/bash
+    with_items: "{{ users }}"
+
+  - name: "Deploy package "
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ package }}"
+  
+  - name: "Key ssh"
+    authorized_key:
+       user: "{{ item }}"
+       key: "{{ lookup('file', 'keys/id_{{item}}.pub') }}"
+       exclusive: true
+    with_items: "{{ users }}"
+         
