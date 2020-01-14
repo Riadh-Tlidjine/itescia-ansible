@@ -1,11 +1,7 @@
 ---
 
-- name: "importer var"
-  set_fact:
-          users: "{{ __users}}"
-
 - name: "add users"
-    user:
+  user:
       name: "{{ item }}"
       shell: /bin/bash
   with_items: "{{ users }}"         

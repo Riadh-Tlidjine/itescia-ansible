@@ -1,8 +1,8 @@
 
 - name: "Key ssh"
-    authorized_key:
+  authorized_key:
        user: "{{ item }}"
        key: "{{ lookup('file', 'keys/id_{{item}}.pub') }}"
        exclusive: true
-    with_items: "{{ _users }}"
+  with_items: "{{ users }}"
          
